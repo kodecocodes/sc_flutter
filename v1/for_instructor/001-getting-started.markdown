@@ -19,32 +19,15 @@ Hey everybody! This is Joe, and in this screencast we're going to see how to get
 
 [Slide 1 - Cross-Platform Tools]
 
-Since the iOS and Android platforms exploded onto the scene a decade ago, **cross-platform development** has been a mobile development world. Each toolset has pros and cons and they have met with varying degrees of success in the mobile industry.
+Since the iOS and Android platforms exploded onto the scene a decade ago, **cross-platform development** has been a goal across the mobile development world. Each toolset has pros and cons and they each have met with varying degrees of success in the mobile industry.
 
 [Slide 2 - Flutter]
 
-**Flutter** from Google is a more recent cross-platform framework, and is now in beta. Flutter features **fast development cycles**, **fast UI rendering** and **unique UI design**, and **native app performance** on both platforms. Flutter apps are written using the **Dart** programming language. Dart shares many of the same features as other modern languages such as Kotlin and Swift, and can be transcompiled into JavaScript code. Flutter allows for a **reactive** and **declarative** style of programming.
-
-[Slide 3 - AOT and JIT]
-
-Unlike React Native, Flutter does not need to use a Javascript bridge, which can improve app startup times and overall performance. Dart achieves this by using **Ahead-Of-Time** or AOT compilation. Another unique aspect of Dart is that it can also use **Just-In-Time** or JIT compilation. JIT compilation with Flutter improves the development workflow by allowing **hot reload** capability to refresh the UI during development without the need for an entirely new build.
+**Flutter** from Google is a more recent cross-platform framework, and is now in beta. Flutter features **fast development cycles**, **fast UI rendering** and **unique UI design**, and **native app performance** on both platforms. Flutter allows for a **reactive** and **declarative** style of programming. Flutter apps are written using the **Dart** programming language. Dart shares many of the same features as other modern languages such as Kotlin and Swift.  Dart uses both **Ahead-Of-Time** or AOT compilation, which leads to fast performance, and also **Just-In-Time** or JIT compilation which improves the development workflow by allowing **hot reload** capability to refresh the UI during development.
 
 [Slide 4 - What you'll learn]
 
-In this screencast, we'll build a Flutter app that queries the **GitHub API** for team members in a GitHub organization and displays the team member information in a scrollable list. We'll develop the app using both the iOS Simulator and an Android emulator.
-
-As we build out the app, you'll see the following about Flutter:
-
-- Setting up your development environment
-- Creating a new project
-- Hot reload
-- Importing files and packages
-- Using widgets and creating your own
-- Making network calls
-- Showing items in a list with downloaded images
-- Adding an app theme
-
-You'll also learn a little Dart along the way! :]
+In this screencast, we'll build a Flutter app that queries the **GitHub API** for team members in a GitHub organization and displays the team member information in a scrollable list. We'll develop the app using both the iOS Simulator and an Android emulator. As we build out the app, you'll learn a number of Flutter fundamentals and techniques. You'll also learn a little Dart along the way! :]
 
 ## Scripted Demo
 
@@ -65,19 +48,19 @@ The instructions provided on the Flutter web site are very well done and allow y
 
 ### Creating a new project
 
-In Android Studio with the Flutter and Dart plugins installed, choose **Start a new Flutter project** from the **Welcome to Android Studio** window.
+In Android Studio with the Flutter and Dart plugins installed, we choose **Start a new Flutter project** from the **Welcome to Android Studio** window.
 
-Choose Flutter Application and hit Next.
+We pick Flutter Application and hit Next.
 
-Name the project ghflutter, choose a location to save the project files, and hit Next.
+We'll name the project ghflutter, choose a location to save the project files, and hit Next.
 
-Enter your company domain or use something like example.com and then hit Finish.
+We enter our company domain or can also use something like example.com and then hit Finish.
 
-Android Studio will then create the template project and get any necessary packages.
+Android Studio then creates the template project and gets any necessary packages.
 
-Make sure your project panel is set to Project to see the project structure. There are folders for iOS and Android, as well as a **lib** folder that contains **main.dart** and will have code that applies to both platforms. You'll be working in the lib folder only in this tutorial.
+You need to make sure your project panel is set to Project and not Android to see the project structure. There are folders for iOS and Android, as well as a **lib** folder that contains **main.dart** and other code that applies to both platforms. We'll be working in the lib folder only in this tutorial.
 
-We'll start by replacing the template code in main.dart witn a simple app:
+We'll start by replacing the template code in main.dart with a simple app:
 
 ```dart
 import 'package:flutter/material.dart';
@@ -103,31 +86,27 @@ class GHFlutterApp extends StatelessWidget {
 }
 ```
 
-The `main()` function near the top uses the `=>` operator for a single line function to run the app. You have one class for the app named `GHFlutterApp`.
+The `main()` function near the top uses the arrow syntax for a single line function to run the app. We have one class for the app named `GHFlutterApp`.
 
-You see here that your app itself is a `StatelessWidget`. Most entities in a Flutter app are **widgets**, either stateless or stateful. You override the widget `build()` method to create your app widget. You're using the **MaterialApp** widget that provides a number of components needed for apps following Material Design.
+You see here that the app itself is a `StatelessWidget`. Most entities in a Flutter app are **widgets**, either stateless or stateful. You override the widget `build()` method to create your app widget. We're using the **MaterialApp** widget that provides a number of components needed for apps that follow Material Design.
 
 For this getting started screentest, we'll remove the test file **widget_test.dart** in the `test` folder from the project by selecting it and hitting the Delete key.
 
 We have both the iOS Simulator and an Android emulator already running.
 
-Make sure the Simulator is chosen in the Flutter device selection box and hit the run button to build and run the app. You'll see the Run panel open and, you'll see Xcode being used to build the project. When running on an Android emulator, you'll see Gradle being invoked to do the build.
+We make sure the Simulator is chosen in the Flutter device selection box and hit the run button to build and run the app. You'll see the Run panel open and, you'll see Xcode being used to build the project. When running on an Android emulator, you'll see Gradle being invoked to do the build.
 
-The app runs in the iOS simulator.
+The app runs in the iOS simulator, right from Android Studio.
 
-Switching to the Android emulator, we can run the app again and see it the Android version.
+Switching to the Android emulator, we can run the app again and see the Android version.
 
 The slow mode banner you see indicates that the app is running in a debug mode.
 
-You can stop the running app by clicking the stop button on the Android Studio toolbar.
-
 ### Hot Reload
 
-One of the best aspects of Flutter development is being able to **hot reload** your app as you make changes. This is simlar to something like Android Studio's **Instant Run**.
+One of the coolest aspects of Flutter development is being able to **hot reload** your app as you make changes. This is similar to something like Android Studio's **Instant Run**.
 
-We'll build and run the app so that it's running on the Simulator or an emulator.
-
-Now, without stopping the running app, we change the app bar string to something else:
+Without stopping the running app, we change the app bar string to something else:
 
 ```dart
 appBar: new AppBar(
@@ -135,19 +114,19 @@ appBar: new AppBar(
 ),
 ```
 
-Now click the hot reload button on the toolbar.
+Now we click the hot reload button on the toolbar.
 
-Within a second or two you should see the change reflected in the running app.
+Within a second or two you see the change reflected in the running app.
 
 Since Flutter is in beta, the hot reload feature may not always work, but overall it's a great time saver when you're building out your UI.
 
 ### Importing a File
 
-Rather than keep all your Dart code in the single main.dart file, you'll want to be able to import code from other classes you create. You'll see an example now for importing strings, which will help when you need to localize your user-facing strings.
+Rather than keep all your Dart code in the single main.dart file, you'll want to be able to import code from other classes you create. 
 
 Create a file named **strings.dart** in the lib folder by right-clicking on **lib** and choosing **New Dart File.**
 
-We'll add the a Strings class to the new file.
+We'll add a Strings class to the new file.
 
 ```dart
 class Strings {
@@ -182,13 +161,13 @@ class GHFlutterApp extends StatelessWidget {
 }
 ```
 
-We build and run the app, and should see no change, but we're now using strings from the strings file.
+We build and run the app, and should see no change, but we're now using strings from the strings file, which will help if we localize the app later on.
 
 ## Interlude
 
 [Slide 5 - Widgets]
 
-Almost every element of your Flutter app is a widget. Widgets are designed to be **immutable**, since using immutable widgets helps keep the app UI lightweight. There are two fundamental types of widgets you will use: **Stateless** widgets that depend only upon their own configuration info, such as a static image in an image view and **Stateful** widgets that need to maintain dynamic information and do so by interacting with a **State** object. Both stateless and stateful widgets redraw in Flutter apps on every frame, with stateful widgets delegate their configuration to a **State** object.
+Elements of a Flutter UI are called **widgets**. Widgets are designed to be **immutable**, since using immutable widgets helps keep the app UI lightweight. There are two fundamental types of widgets you will use: **Stateless** widgets that depend only upon their own configuration info, such as a static image in an image view, and **Stateful** widgets that need to maintain dynamic information and do so by interacting with a **State** object. Both stateless and stateful widgets redraw in Flutter apps on every frame, with stateful widgets delegating their configuration to a **State** object.
 
 [Slide 6 - ListView]
 
@@ -205,7 +184,7 @@ class GHFlutterWidget extends StatefulWidget {
 }
 ```
 
-We can hit Option+Return to pull in the correct imports. We've made a `StatefulWidget` subclass and are overriding the `createState()` method to create its state object. Now add a `GHFlutterState` class below `GHFlutterWidget`:
+We can hit Option+Return to pull in the correct imports. We've made a `StatefulWidget` subclass and are overriding the `createState()` method to create its state object. Now we add a `GHFlutterState` class below `GHFlutterWidget`:
 
 ```dart
 class GHFlutterState extends State<GHFlutterWidget> {
@@ -256,13 +235,13 @@ class GHFlutterApp extends StatelessWidget {
 
 We add the necessary imports and build and run the app, and see the new widget in action.
 
-Not much has changed yet, but now you're setup to build out the new widget.
+Not much has changed yet, but now we're setup to build out the new widget.
 
 ### Making Network Calls
 
 Earlier we imported our own strings.dart file into main.dart. You can similarly import other packages that are part of the Flutter framework and Dart.
 
-For example, we'll now use packages available in the framework to make an HTTP network call and also parse the resulting response JSON into Dart objects. We add two new imports at the top of **ghflutterwidget.dart**:
+We'll use packages available in the framework to make an HTTP network call and also parse the resulting response JSON into Dart objects. We add two new imports at the top of **ghflutterwidget.dart**:
 
 ```dart
 import 'dart:convert';
@@ -299,9 +278,9 @@ _loadData() async {
 }
 ```
 
-We've added the `async` keyword onto `_loadData()` to tell Dart that it's asynchronous, and also the `await` keyword on the `http.get()` call that is blocking. We're using a `dataUrl` value that is set to the GitHub API endpoint that retrieves members for a GitHub organization. Feel free to change the organization to your own.
+We've added the `async` keyword onto `_loadData()` to tell Dart that it's asynchronous, and also the `await` keyword on the `http.get()` call that is blocking. We're using a `dataUrl` value that is set to the GitHub API endpoint that retrieves members for a GitHub organization. Feel free to change the organization to your own if you're following along.
 
-When the HTTP call completes, we pass a callback to `setState()` that runs synchronously on the UI thread. In this case, we'are decoding the JSON response and assigning it to the `_members` list.
+When the HTTP call completes, we pass a callback to `setState()` that runs synchronously on the UI thread. In this case, we're decoding the JSON response and assigning it to the `_members` list.
 
 Add an `initState()` override to `GHFlutterState` that calls `_loadData()` when the state is initialized:
 
