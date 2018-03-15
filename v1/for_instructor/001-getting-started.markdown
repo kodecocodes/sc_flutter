@@ -27,7 +27,7 @@ Since the iOS and Android platforms exploded onto the scene a decade ago, **cros
 
 [Slide 3 - AOT and JIT]
 
-Unlike React Native, however, Flutter does not need to use a Javascript bridge, which can improve app startup times and overall performance. Dart achieves this by using **Ahead-Of-Time** or AOT compilation. Another unique aspect of Dart is that it can also use **Just-In-Time** or JIT compilation. JIT compilation with Flutter improves the development workflow by allowing **hot reload** capability to refresh the UI during development without the need for an entirely new build.
+Unlike React Native, Flutter does not need to use a Javascript bridge, which can improve app startup times and overall performance. Dart achieves this by using **Ahead-Of-Time** or AOT compilation. Another unique aspect of Dart is that it can also use **Just-In-Time** or JIT compilation. JIT compilation with Flutter improves the development workflow by allowing **hot reload** capability to refresh the UI during development without the need for an entirely new build.
 
 [Slide 4 - What you'll learn]
 
@@ -188,7 +188,7 @@ We build and run the app, and should see no change, but we're now using strings 
 
 [Slide 5 - Widgets]
 
-Almost every element of your Flutter app is a widget. Widgets are designed to be **immutable**, since using immutable widgets helps keep the app UI lightweight. There are two fundamental types of widgets you will use: **Stateless**: widgets that depend only upon their own configuration info, such as a static image in an image view. **Stateful**: widgets that need to maintain dynamic information and do so by interacting with a **State** object. Both stateless and stateful widgets redraw in Flutter apps on every frame, the difference being that the stateful widgets delegate their configuration to a **State** object.
+Almost every element of your Flutter app is a widget. Widgets are designed to be **immutable**, since using immutable widgets helps keep the app UI lightweight. There are two fundamental types of widgets you will use: **Stateless** widgets that depend only upon their own configuration info, such as a static image in an image view and **Stateful** widgets that need to maintain dynamic information and do so by interacting with a **State** object. Both stateless and stateful widgets redraw in Flutter apps on every frame, with stateful widgets delegate their configuration to a **State** object.
 
 [Slide 6 - ListView]
 
@@ -347,41 +347,6 @@ We can try a hot reload, but may get a "Full restart may be required" message. I
 
 That's just how easy it is to make a network call, parse the data, and show the results in a list!
 
-### Adding dividers
-
-To add dividers into the list, we're double the item count, and then return a **Divider** widget when the position in the list is odd:
-
-```dart
-body: new ListView.builder(
-  itemCount: _members.length * 2,
-  itemBuilder: (BuildContext context, int position) {
-    if (position.isOdd) return new Divider();
-
-      final index = position ~/ 2;
-
-      return _buildRow(index);
-    }),
-```
-
-Be sure not to miss the * 2 on `itemCount`. We've removed padding from the builder now that we have dividers. In `itemBuilder`, we're either returning a `Divider()`, or instead calculating a new index by integer division and using `_buildRow()` to build a row item.
-
-We try a hot reload and we should see dividers on the list:
-
-To add padding back into each row, we want to use a `Padding` widget within `_buildRow()`:
-
-```dart
-Widget _buildRow(int i) {
-  return new Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: new ListTile(
-      title: new Text("${_members[i]["login"]}", style: _biggerFont)
-    )
-  );
-}
-```
-
-The `ListTile` is now a child widget of the padding widget. We hot reload to see the padding on the rows but not on the dividers.
-
 ## Parsing to Custom Types
 
 In the previous section, the JSON parser took each member in the JSON response and added it to the `_members` list as a Dart **Map** type, the equivalent of a **Map** in Kotlin or a **Dictionary** in Swift.
@@ -420,15 +385,12 @@ We update `_buildRow()` to use the `login` property on the `Member` object inste
 
 ```dart
 Widget _buildRow(int i) {
-  return new Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: new ListTile(
-      title: new Text("${_members[i].login}", style: _biggerFont),
-      leading: new CircleAvatar(
-        backgroundColor: Colors.green,
-        backgroundImage: new NetworkImage(_members[i].avatarUrl)
-      ),
-    )
+  return new ListTile(
+    title: new Text("${_members[i].login}", style: _biggerFont),
+    leading: new CircleAvatar(
+      backgroundColor: Colors.green,
+      backgroundImage: new NetworkImage(_members[i].avatarUrl)
+    ),
   );
 }
 ```
