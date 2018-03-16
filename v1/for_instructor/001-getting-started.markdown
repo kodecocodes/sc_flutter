@@ -15,7 +15,7 @@ Dive into the Flutter framework for building iOS and Android apps in a single co
 * **Editor**: Android Studio 3
 
 
-Hey everybody! This is Joe, and in this screencast we're going to see how to get started with Flutter, a cross-platform framework from Google for iOS and Android development.
+Hey everybody! Joe here, and in this screencast we're going to see how to get started with Flutter, a cross-platform framework from Google for iOS and Android development.
 
 [Slide 1 - Cross-Platform Tools]
 
