@@ -339,20 +339,11 @@ class Member {
   final String login;
   final String avatarUrl;
 
-  Member(this.login, this.avatarUrl) {
-    if (login == null) {
-      throw new ArgumentError("login of Member cannot be null. "
-          "Received: '$login'");
-    }
-    if (avatarUrl == null) {
-      throw new ArgumentError("avatarUrl of Member cannot be null. "
-          "Received: '$avatarUrl'");
-    }
-  }
+  Member(this.login, this.avatarUrl);
 }
 ```
 
-A member has a `login` property, an `avatarUrl` property, and a constructor that throws an error if either value is null.
+A member has a `login` property, an `avatarUrl` property, and a constructor.
 
 We update the `_members` declaration in `GHFlutterState` so that it is a list of `Member` objects:
 
@@ -360,7 +351,7 @@ We update the `_members` declaration in `GHFlutterState` so that it is a list of
 var _members = <Member>[];
 ```
 
-We update `_buildRow()` to use the `login` property on the `Member` object instead of using the "login" key on the map, and also add a leading attribute that will use a CircleAvatar to show the member image:
+We update `_buildRow()` to use the `login` property on the `Member` object instead of using the "login" key on the map, and also add a leading attribute that will use a CircleAvatar and NetworkImage to show the member image:
 
 ```dart
 Widget _buildRow(int i) {
