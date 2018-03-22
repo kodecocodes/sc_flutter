@@ -23,9 +23,13 @@ Since the iOS and Android platforms exploded onto the scene a decade ago, **cros
 
 [Slide 2 - Flutter]
 
-**Flutter** from Google is a more recent cross-platform framework, and is now in beta. Flutter features **fast development cycles**, **fast UI rendering** and **unique UI design**, and **native app performance** on both platforms. Flutter allows for a **reactive** and **declarative** style of programming. Flutter apps are written using the **Dart** programming language. Dart shares many of the same features as other modern languages such as Kotlin and Swift.  Dart uses both **Ahead-Of-Time** or AOT compilation, which leads to fast performance, and also **Just-In-Time** or JIT compilation which improves the development workflow by allowing **hot reload** capability to refresh the UI during development.
+**Flutter** from Google is a more recent cross-platform framework, and is now in beta. Flutter features **fast development cycles**, **fast UI rendering** and **unique UI design**, and **native app performance** on both platforms. Flutter allows for a **reactive** and **declarative** style of programming. Flutter apps are written using the **Dart** programming language. Dart shares many of the same features as other modern languages such as Kotlin and Swift. 
 
-[Slide 4 - What you'll learn]
+[Slide 3 - AOT and JIT]
+
+Dart uses both **Ahead-Of-Time** or AOT compilation, which leads to fast performance, and also **Just-In-Time** or JIT compilation which improves the development workflow by allowing **hot reload** capability to refresh the UI during development.
+
+[Slide 4 - Sample Project]
 
 In this screencast, we'll build a Flutter app that queries the **GitHub API** for team members in a GitHub organization and displays the team member information in a scrollable list. We'll develop the app using both the iOS Simulator and an Android emulator. As we build out the app, you'll learn a number of Flutter fundamentals and techniques. You'll also learn a little Dart along the way! :]
 
